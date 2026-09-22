@@ -1,6 +1,8 @@
 # AgentObserver
 
-AgentObserver is a counterparty Preflight service for AI agents.
+AgentObserver is an agent health and counterparty Preflight service for AI agents.
+
+Use it when an agent needs to verify the current observable state of another agent or MCP service before relying on it, calling it, or paying it.
 
 ## Official MCP Registry
 
@@ -10,17 +12,49 @@ Registry name:
 Status:
 **active**
 
+Current registry version:
+`0.7.1`
+
 Remote MCP endpoint:
 https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp
 
 Protocol:
 MCP 2026-07-28 over Streamable HTTP
 
-Tools:
-- `agentobserver_interfaces`
-- `agentobserver_targets`
-- `agentobserver_status`
-- `agentobserver_preflight` — paid via x402
+## MCP tools
+
+Free:
+- `agentobserver_interfaces` — discover HTTP/x402, MCP/x402 and A2A surfaces
+- `agentobserver_targets` — list enabled Preflight targets
+- `agentobserver_status(target)` — check freshness, reachability, drift and expectation mismatches
+
+Paid:
+- `agentobserver_preflight(target, max_age_seconds=900)` — full x402 Preflight evidence package for 0.05 USDC
+
+## MCP resources
+
+- `agentobserver://interfaces`
+- `agentobserver://targets`
+
+## MCP prompts
+
+- `preflight_before_payment(target)`
+
+This prompt guides an agent to check free status first and purchase the full Preflight only when complete evidence is needed.
+
+## Discovery documents
+
+MCP Server Card:
+https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp/server-card
+
+Registry manifest:
+https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/mcp.json
+
+AI Catalog:
+https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/ai-catalog.json
+
+Agent-readable index:
+https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/llms.txt
 
 ## Other public interfaces
 
@@ -32,6 +66,18 @@ https://spi4fidztufwksb67wbf5dnyii.srv.us/.well-known/agent-card.json
 
 A2A JSON-RPC:
 https://spi4fidztufwksb67wbf5dnyii.srv.us/a2a
+
+## Search terms / use cases
+
+AgentObserver is relevant to:
+- agent preflight
+- agent health check
+- verify agent before payment
+- MCP service health
+- counterparty verification
+- x402 payment preflight
+- agent drift detection
+- freshness and change detection
 
 ## Publishing
 
