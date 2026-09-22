@@ -25,18 +25,19 @@ MCP 2026-07-28 over Streamable HTTP
 
 Free:
 - `agentobserver_interfaces` — discover HTTP/x402, MCP/x402 and A2A surfaces
-- `agentobserver_targets` — list enabled Preflight targets
+- `agentobserver_targets` — list status-visible targets and whether paid Preflight is enabled
 - `agentobserver_status(target)` — check freshness, material changes, expectation mismatches and factual attention reasons
 
 Paid:
-- `agentobserver_preflight(target, max_age_seconds=900)` — full x402 Preflight evidence package for 0.05 USDC
+- `agentobserver_preflight(target, max_age_seconds=900)` — full x402 Preflight evidence package for 0.05 USDC when paid Preflight is enabled for that target
 
-The free status tool now exposes fields such as:
+The free status tool exposes:
 - `material_changes_detected`
 - `material_change_count`
 - `payment_terms_changed`
 - `agent_identity_or_transport_changed`
 - `agent_capabilities_changed`
+- `authorization_metadata_changed`
 - `attention_required_by_observed_facts`
 - `attention_reasons`
 
@@ -51,7 +52,7 @@ These are deterministic facts derived from observed state and configured expecta
 
 - `preflight_before_payment(target)`
 
-This prompt guides an agent to check free status first and purchase the full Preflight only when complete evidence is needed.
+This prompt guides an agent to check free status first and purchase the full Preflight only when complete evidence is needed and the target is paid-Preflight enabled.
 
 ## Discovery documents
 
@@ -80,9 +81,12 @@ https://spi4fidztufwksb67wbf5dnyii.srv.us/a2a
 
 ## Target coverage
 
-Production currently exposes one paid Preflight target.
+Production currently exposes two status-visible targets:
 
-A two-target staging registry has been validated to prove onboarding, baseline capture and multi-target summarization before adding more opt-in production targets.
+- https://a2a-inspector.davidcjw.com — free status + paid Preflight at 0.05 USDC
+- https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us — free status only; paid Preflight disabled
+
+Status availability and paid Preflight eligibility are separate. More opt-in targets can be added for free status first and monetized selectively later.
 
 ## Search terms / use cases
 
