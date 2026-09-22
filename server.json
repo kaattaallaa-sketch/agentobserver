@@ -3,7 +3,7 @@
   "name": "io.github.kaattaallaa-sketch/agentobserver",
   "title": "AgentObserver — Agent Health & Preflight",
   "description": "Check agent health, drift and payment metadata before calling or paying another agent.",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "websiteUrl": "https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/skill.md",
   "remotes": [
     {
