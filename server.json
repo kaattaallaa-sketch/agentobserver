@@ -1,13 +1,32 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kaattaallaa-sketch/agentobserver",
-  "title": "AgentObserver Preflight",
-  "description": "Fresh counterparty-state and drift evidence for AI agents, with paid x402 Preflight.",
-  "version": "0.7.0",
+  "title": "AgentObserver — Agent Health & Preflight",
+  "description": "Check agent health, drift and payment metadata before calling or paying another agent.",
+  "version": "0.7.1",
+  "websiteUrl": "https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/skill.md",
   "remotes": [
     {
       "type": "streamable-http",
       "url": "https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp"
     }
-  ]
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "keywords": [
+        "agent preflight",
+        "agent health check",
+        "verify agent before payment",
+        "x402",
+        "drift detection",
+        "counterparty verification"
+      ],
+      "protocols": ["MCP", "x402", "A2A"],
+      "pricing": {
+        "amount": "0.05",
+        "currency": "USDC",
+        "network": "eip155:8453"
+      }
+    }
+  }
 }
