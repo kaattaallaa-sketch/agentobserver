@@ -13,7 +13,7 @@ Status:
 **active**
 
 Current registry version:
-`0.7.1`
+`0.7.2`
 
 Remote MCP endpoint:
 https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp
@@ -26,10 +26,21 @@ MCP 2026-07-28 over Streamable HTTP
 Free:
 - `agentobserver_interfaces` — discover HTTP/x402, MCP/x402 and A2A surfaces
 - `agentobserver_targets` — list enabled Preflight targets
-- `agentobserver_status(target)` — check freshness, reachability, drift and expectation mismatches
+- `agentobserver_status(target)` — check freshness, material changes, expectation mismatches and factual attention reasons
 
 Paid:
 - `agentobserver_preflight(target, max_age_seconds=900)` — full x402 Preflight evidence package for 0.05 USDC
+
+The free status tool now exposes fields such as:
+- `material_changes_detected`
+- `material_change_count`
+- `payment_terms_changed`
+- `agent_identity_or_transport_changed`
+- `agent_capabilities_changed`
+- `attention_required_by_observed_facts`
+- `attention_reasons`
+
+These are deterministic facts derived from observed state and configured expectations, not a subjective trust score.
 
 ## MCP resources
 
@@ -66,6 +77,12 @@ https://spi4fidztufwksb67wbf5dnyii.srv.us/.well-known/agent-card.json
 
 A2A JSON-RPC:
 https://spi4fidztufwksb67wbf5dnyii.srv.us/a2a
+
+## Target coverage
+
+Production currently exposes one paid Preflight target.
+
+A two-target staging registry has been validated to prove onboarding, baseline capture and multi-target summarization before adding more opt-in production targets.
 
 ## Search terms / use cases
 
