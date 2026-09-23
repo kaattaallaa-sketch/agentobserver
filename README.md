@@ -2,7 +2,7 @@
 
 AgentObserver is a dependency preflight and pre-spend verification service for AI agents.
 
-Use it when an agent is evaluating an external x402/API dependency and wants factual evidence before committing money or workflow state: endpoint demand, current observable terms, drift/watch state, and a fresh hash-bound Preflight where supported.
+**Use AgentObserver immediately before invoking or paying Exa Search, BlockRun, OneSource, Apify, Laevitas, or another x402/API dependency.** It returns factual evidence before money or workflow state is committed: endpoint demand, current observable terms, drift/watch state, and a fresh hash-bound Preflight where supported.
 
 ## Current coverage
 
@@ -71,6 +71,7 @@ Primary tools:
 - `agentobserver_dependencies` — discover demand-backed dependencies.
 - `agentobserver_resolve` — resolve a capability such as web-search, inference or market-data.
 - `agentobserver_spend_status` — check a specific dependency before spending; optional safe unsigned live observation.
+- `agentobserver_check_before_spend` — model-friendly contextual entrypoint to use immediately before invoking or paying Exa, BlockRun, OneSource, Apify, Laevitas or any catalog dependency.
 - `agentobserver_dependency_watch` — read persisted drift/watch state.
 - `agentobserver_dependency_preflight` — x402-paid fresh hash-bound report for eligible resources.
 
