@@ -1,107 +1,119 @@
 # AgentObserver
 
-AgentObserver is an agent health and counterparty Preflight service for AI agents.
+AgentObserver is a dependency preflight and pre-spend verification service for AI agents.
 
-Use it when an agent needs to verify the current observable state of another agent or MCP service before relying on it, calling it, or paying it.
+Use it when an agent is evaluating an external x402/API dependency and wants factual evidence before committing money or workflow state: endpoint demand, current observable terms, drift/watch state, and a fresh hash-bound Preflight where supported.
 
-## Official MCP Registry
+## Current coverage
 
-Registry name:
+- **10/10** catalog resources have a reviewed GET-only observation surface.
+- **7/10** have external endpoint-level demand evidence.
+- **4/10** expose a direct x402 challenge and have a canonical paid AgentObserver Preflight product.
+- AgentObserver never sends a provider payment signature from free checks or spend-status.
+
+Catalog examples include **Exa Search, BlockRun Chat Completions, OneSource Deepstate Markets, Apify x402, Laevitas, AgentUtility, StableSocial and Cluster Protocol**.
+
+## Start here
+
+Quickstart:
+https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/quickstart
+
+Dependency catalog:
+https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/dependencies
+
+Resolve by capability:
+https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/resolve?capability=web-search
+
+## Direct free checks
+
+These URLs are designed for agents and indexers evaluating a specific dependency.
+
+- Exa Search  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/check/exa/search
+- BlockRun Chat Completions  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/check/blockrun/chat-completions
+- OneSource Deepstate Markets  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/check/onesource/deepstate-markets
+- Apify x402 Prepaid Token  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/check/apify/x402-prepaid-token
+
+The full catalog exposes one direct check URL per dependency.
+
+## Canonical paid x402 products
+
+Each product has its own URL and returns an unsigned x402 V2 payment requirement when called without payment.
+
+- OneSource Deepstate Markets  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/dependency-preflight/onesource/deepstate-markets
+- BlockRun Exa Find Similar  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/dependency-preflight/blockrun/exa-find-similar
+- Apify x402 Prepaid Token  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/dependency-preflight/apify/x402-prepaid-token
+- Laevitas Instruments  
+  https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/v1/dependency-preflight/laevitas/instruments
+
+Price: **0.05 USDC on Base**.
+
+These canonical products are registered in x402scan discovery. The generic parameterized route remains available for compatibility but is not the preferred marketplace surface.
+
+## MCP
+
+Official registry name:
+
 `io.github.kaattaallaa-sketch/agentobserver`
 
-Status:
-**active**
-
-Current registry version:
-`0.7.2`
-
 Remote MCP endpoint:
+
 https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp
 
-Protocol:
-MCP 2026-07-28 over Streamable HTTP
+Primary tools:
 
-## MCP tools
+- `agentobserver_dependencies` — discover demand-backed dependencies.
+- `agentobserver_resolve` — resolve a capability such as web-search, inference or market-data.
+- `agentobserver_spend_status` — check a specific dependency before spending; optional safe unsigned live observation.
+- `agentobserver_dependency_watch` — read persisted drift/watch state.
+- `agentobserver_dependency_preflight` — x402-paid fresh hash-bound report for eligible resources.
 
-Free:
-- `agentobserver_interfaces` — discover HTTP/x402, MCP/x402 and A2A surfaces
-- `agentobserver_targets` — list status-visible targets and whether paid Preflight is enabled
-- `agentobserver_status(target)` — check freshness, material changes, expectation mismatches and factual attention reasons
+Legacy registered-counterparty tools remain available for compatibility but are not the primary product.
 
-Paid:
-- `agentobserver_preflight(target, max_age_seconds=900)` — full x402 Preflight evidence package for 0.05 USDC when paid Preflight is enabled for that target
+## A2A
 
-The free status tool exposes:
-- `material_changes_detected`
-- `material_change_count`
-- `payment_terms_changed`
-- `agent_identity_or_transport_changed`
-- `agent_capabilities_changed`
-- `authorization_metadata_changed`
-- `attention_required_by_observed_facts`
-- `attention_reasons`
+Agent Card:
 
-These are deterministic facts derived from observed state and configured expectations, not a subjective trust score.
-
-## MCP resources
-
-- `agentobserver://interfaces`
-- `agentobserver://targets`
-
-## MCP prompts
-
-- `preflight_before_payment(target)`
-
-This prompt guides an agent to check free status first and purchase the full Preflight only when complete evidence is needed and the target is paid-Preflight enabled.
-
-## Discovery documents
-
-MCP Server Card:
-https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp/server-card
-
-Registry manifest:
-https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/mcp.json
-
-AI Catalog:
-https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/ai-catalog.json
-
-Agent-readable index:
-https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/llms.txt
-
-## Other public interfaces
-
-HTTP/x402:
-https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us
-
-A2A Agent Card:
 https://spi4fidztufwksb67wbf5dnyii.srv.us/.well-known/agent-card.json
 
-A2A JSON-RPC:
+JSON-RPC:
+
 https://spi4fidztufwksb67wbf5dnyii.srv.us/a2a
 
-## Target coverage
+Examples:
 
-Production currently exposes two status-visible targets:
+- `spend-status exa search`
+- `spend-status blockrun chat-completions`
+- `watch exa search`
+- `dependency-preflight blockrun exa-find-similar`
 
-- https://a2a-inspector.davidcjw.com — free status + paid Preflight at 0.05 USDC
-- https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us — free status only; paid Preflight disabled
+## Machine-readable discovery
 
-Status availability and paid Preflight eligibility are separate. More opt-in targets can be added for free status first and monetized selectively later.
+- OpenAPI: https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/openapi.json
+- x402 discovery: https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/x402
+- MCP manifest: https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/mcp.json
+- MCP Server Card: https://icqzbuuix6e4bed2stnnboqcti.srv.us/mcp/server-card
+- AI Catalog: https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/.well-known/ai-catalog.json
+- llms.txt: https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/llms.txt
 
-## Search terms / use cases
+## Evidence semantics
 
-AgentObserver is relevant to:
-- agent preflight
-- agent health check
-- verify agent before payment
-- MCP service health
-- counterparty verification
-- x402 payment preflight
-- agent drift detection
-- freshness and change detection
+AgentObserver separates:
+
+- external provider-wide context,
+- endpoint-specific external demand evidence,
+- first-party AgentObserver usage,
+- live observable contract/payment conditions,
+- paid Preflight evidence.
+
+A missing endpoint-demand match is reported as **unknown**, not zero demand. Catalog inclusion and demand figures are factual observations, not endorsements or trust scores.
 
 ## Publishing
 
-This repository contains the MCP Registry metadata in `server.json`.
-
-Publishing uses GitHub Actions OIDC with `id-token: write`; no registry PAT is stored in this repository.
+MCP Registry metadata lives in `server.json`. Changes to that file trigger the GitHub Actions OIDC publisher; no MCP Registry PAT is stored in this repository.
