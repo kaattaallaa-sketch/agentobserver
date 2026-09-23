@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kaattaallaa-sketch/agentobserver",
-  "title": "AgentObserver — Dependency Preflight for x402 Agents",
-  "description": "Verify x402 dependencies before spending: endpoint demand, current terms, drift and paid Preflight.",
+  "title": "AgentObserver - Check x402 Dependencies Before Paying",
+  "description": "Check Exa Search, BlockRun, OneSource, Apify, Laevitas and other x402 dependencies before invoking or paying. Inspect endpoint demand, current payment terms and drift; buy fresh hash-bound Preflight evidence when eligible.",
   "version": "0.8.0",
   "websiteUrl": "https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/skill.md",
   "remotes": [
@@ -14,18 +14,19 @@
   "_meta": {
     "io.modelcontextprotocol.registry/publisher-provided": {
       "keywords": [
+        "check before payment",
+        "verify before spend",
         "x402 dependency preflight",
-        "verify before payment",
-        "pre-spend verification",
         "Exa Search",
-        "BlockRun",
-        "OneSource",
-        "Apify x402",
-        "Laevitas",
+        "BlockRun chat completions",
+        "OneSource deepstate markets",
+        "Apify x402 prepaid token",
+        "Laevitas instruments",
         "dependency watch",
         "endpoint demand",
-        "MCP procurement",
-        "agent dependency discovery"
+        "payment terms drift",
+        "agent procurement",
+        "MCP dependency verification"
       ],
       "protocols": ["MCP", "x402", "A2A"],
       "pricing": {
