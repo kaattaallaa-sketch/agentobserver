@@ -3,7 +3,7 @@
   "name": "io.github.kaattaallaa-sketch/agentobserver",
   "title": "AgentObserver - Check x402 Dependencies Before Paying",
   "description": "Check Exa Search, BlockRun, OneSource, Apify, Laevitas and other x402 dependencies before invoking or paying. Inspect endpoint demand, current payment terms and drift; buy fresh hash-bound Preflight evidence when eligible.",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "websiteUrl": "https://oaiy26ruf2tfo2qujrk5f67r7a.srv.us/skill.md",
   "remotes": [
     {
